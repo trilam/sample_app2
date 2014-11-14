@@ -7,7 +7,9 @@ class User < ActiveRecord::Base
                       format: { with: VALID_EMAIL_REGEX },
                       uniqueness: { case_sensitive: false}
 	has_secure_password
-	validates :password, length: {minimum: 6}
+    # allow_blank is for editing the users without providing password.
+    # has_secure_password above will stop blank password to be created.
+	validates :password, length: {minimum: 6}, allow_blank: true
 
 	# Returns the hash digest of a string - minimum cost -
 	def User.digest(string)
