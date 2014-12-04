@@ -27,3 +27,11 @@ users= User.order(:created_at).take(6)
   users.each  { |user| user.microposts.create!(content: content) }
 end
 
+users=User.all
+me=users.first
+
+users[2..50].each { |my_following| me.follow(my_following) }
+users[3..40].each { |my_follower| my_follower.follow(me) }
+
+
+
